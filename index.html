@@ -53,10 +53,14 @@
             border-radius: 50%;
             background-color: var(--accent-color);
             border: 4px solid white;
+            background-image: url('profile.jpeg');
+            background-size: cover;
+            background-position: center;
+            overflow: hidden;
+            /* Keep these if you want a fallback text displayed when image fails to load */
             display: flex;
             align-items: center;
             justify-content: center;
-            overflow: hidden;
             font-size: 4rem;
             color: var(--primary-color);
         }
@@ -417,11 +421,11 @@
 <body>
     <header>
         <div class="profile-container">
-            <div class="profile-image">AP</div>
+            <div class="profile-image"></div>
             <div class="profile-info">
                 <h1>Abhinav Pandey</h1>
                 <h2>Data Scientist & Machine Learning Engineer</h2>
-                <p>5 years of experience in machine learning, natural language processing, EDA, and statistical analysis. Passionate engineer specializing in AI-driven solutions for real-world problems.</p>
+                <p>5 years of experience in Machine Learning, Natural Language Processing, EDA, and Statistical Analysis. Passionate engineer specializing in AI-driven solutions for real-world problems.</p>
                 <div class="contact-info">
                     <a href="tel:+16476244327" class="contact-item">
                         <span>📱</span> +1 (647) 624-4327
