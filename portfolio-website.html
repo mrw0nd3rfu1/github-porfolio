@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abhinav Pandey - Data Scientist & ML Engineer</title>
+    <style>
+        :root {
+            --primary-color: #1e3a8a;
+            --secondary-color: #3b82f6;
+            --accent-color: #dbeafe;
+            --text-color: #1f2937;
+            --light-text: #4b5563;
+            --background-color: #f9fafb;
+            --card-color: #ffffff;
+            --header-gradient: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        
+        header {
+            background: var(--header-gradient);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+            position: relative;
+        }
+        
+        .profile-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .profile-image {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            background-color: var(--accent-color);
+            border: 4px solid white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            font-size: 4rem;
+            color: var(--primary-color);
+        }
+        
+        .profile-info {
+            text-align: left;
+        }
+        
+        .profile-info h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .profile-info h2 {
+            font-size: 1.5rem;
+            font-weight: 400;
+            margin-bottom: 1rem;
+            color: rgba(255, 255, 255, 0.9);
+        }
+        
+        .contact-info {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: white;
+            text-decoration: none;
+        }
+        
+        nav {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+        }
+        
+        .nav-link {
+            padding: 1rem 1.5rem;
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-link:hover {
+            color: var(--secondary-color);
+        }
+        
+        .nav-link.active {
+            color: var(--secondary-color);
+            border-bottom: 3px solid var(--secondary-color);
+        }
+        
+        main {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+        
+        section {
+            margin-bottom: 3rem;
+            scroll-margin-top: 80px;
+        }
+        
+        .section-title {
+            font-size: 1.8rem;
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background-color: var(--secondary-color);
+        }
+        
+        .card {
+            background-color: var(--card-color);
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        }
+        
+        .experience-item {
+            margin-bottom: 2rem;
+        }
+        
+        .experience-title {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin-bottom: 0.5rem;
+        }
+        
+        .job-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+        
+        .company {
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+        
+        .period {
+            color: var(--light-text);
+            font-weight: 500;
+        }
+        
+        .location {
+            color: var(--light-text);
+            margin-bottom: 1rem;
+        }
+        
+        .responsibilities {
+            padding-left: 1.5rem;
+        }
+        
+        .skill-categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .skill-category h3 {
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+        
+        .skills-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        
+        .skill-badge {
+            background-color: var(--accent-color);
+            color: var(--primary-color);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .project-card {
+            background-color: var(--card-color);
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        }
+        
+        .project-header {
+            padding: 1.5rem 1.5rem 0.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .project-title {
+            font-size: 1.3rem;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+        
+        .github-link {
+            background-color: var(--primary-color);
+            color: white;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: background-color 0.3s ease;
+        }
+        
+        .github-link:hover {
+            background-color: var(--secondary-color);
+        }
+        
+        .project-body {
+            padding: 0.5rem 1.5rem 1.5rem;
+            flex-grow: 1;
+        }
+        
+        .project-tech {
+            margin-top: 1rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        
+        .tech-badge {
+            background-color: #e0e7ff;
+            color: #4338ca;
+            padding: 0.25rem 0.75rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+        }
+        
+        .education-item {
+            margin-bottom: 1.5rem;
+        }
+        
+        .degree {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+        
+        .institution {
+            font-weight: 500;
+        }
+        
+        .education-year {
+            color: var(--light-text);
+        }
+        
+        .certifications-list {
+            list-style-type: none;
+        }
+        
+        .certification-item {
+            margin-bottom: 1rem;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+        
+        .certification-item::before {
+            content: '🏆';
+            position: absolute;
+            left: 0;
+            color: var(--secondary-color);
+        }
+        
+        .certification-title {
+            font-weight: 600;
+        }
+        
+        .certification-date {
+            color: var(--light-text);
+        }
+        
+        footer {
+            background-color: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+        
+        .social-link {
+            color: white;
+            background-color: rgba(255, 255, 255, 0.1);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.3s ease;
+            text-decoration: none;
+        }
+        
+        .social-link:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+        
+        @media (max-width: 768px) {
+            .profile-container {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .profile-info {
+                text-align: center;
+            }
+            
+            .contact-info {
+                justify-content: center;
+            }
+            
+            .nav-container {
+                flex-wrap: wrap;
+            }
+            
+            .experience-title {
+                flex-direction: column;
+            }
+            
+            .period {
+                margin-top: 0.5rem;
+            }
+            
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="profile-container">
+            <div class="profile-image">AP</div>
+            <div class="profile-info">
+                <h1>Abhinav Pandey</h1>
+                <h2>Data Scientist & Machine Learning Engineer</h2>
+                <p>5 years of experience in machine learning, natural language processing, EDA, and statistical analysis. Passionate engineer specializing in AI-driven solutions for real-world problems.</p>
+                <div class="contact-info">
+                    <a href="tel:+16476244327" class="contact-item">
+                        <span>📱</span> +1 (647) 624-4327
+                    </a>
+                    <a href="mailto:abhinav.pandey3@hotmail.com" class="contact-item">
+                        <span>✉️</span> abhinav.pandey3@hotmail.com
+                    </a>
+                    <a href="https://github.com/mrw0nd3rfu1" target="_blank" class="contact-item">
+                        <span>💻</span> GitHub
+                    </a>
+                    <span class="contact-item">
+                        <span>📍</span> Thunder Bay, ON
+                    </span>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <nav>
+        <div class="nav-container">
+            <a href="#about" class="nav-link active">About</a>
+            <a href="#experience" class="nav-link">Experience</a>
+            <a href="#skills" class="nav-link">Skills</a>
+            <a href="#projects" class="nav-link">Projects</a>
+            <a href="#education" class="nav-link">Education</a>
+            <a href="#certifications" class="nav-link">Certifications</a>
+        </div>
+    </nav>
+    
+    <main>
+        <section id="about" class="card">
+            <h2 class="section-title">About Me</h2>
+            <p>I am a data scientist and machine learning engineer with 5 years of experience in developing AI-driven solutions for complex business problems. My expertise includes machine learning, natural language processing, exploratory data analysis, feature engineering, and statistical analysis.</p>
+            <p>With a proven track record of implementing cutting-edge technologies such as LLMs, RAG, and deep learning models, I excel at translating business requirements into scalable AI solutions. I am particularly passionate about NLP, predictive modeling, and leveraging AI to solve real-world challenges.</p>
+            <p>Currently, I'm pursuing my MSc in Computer Science at Lakehead University while working as a Research Assistant, focusing on the application of deep learning for educational analytics.</p>
+        </section>
+        
+        <section id="experience">
+            <h2 class="section-title">Work Experience</h2>
+            
+            <div class="experience-item card">
+                <div class="experience-title">
+                    <div>
+                        <div class="job-title">Research Assistant</div>
+                        <div class="company">Lakehead University</div>
+                    </div>
+                    <div class="period">01/2025 - Present</div>
+                </div>
+                <div class="location">Thunder Bay, ON</div>
+                <ul class="responsibilities">
+                    <li>Conducting research on the application of deep learning to analyze factors influencing students' academic performance.</li>
+                    <li>Collecting and creating a systemized method to gather educational data for machine learning model training.</li>
+                    <li>Developing and optimizing deep learning models (Clustering and GNN) to predict student performance based on various academic and behavioral factors.</li>
+                    <li>Reviewing academic literature and research papers to stay updated on AI-driven educational analytics.</li>
+                    <li>Documenting research findings and presenting results to faculty and research teams.</li>
+                </ul>
+            </div>
+            
+            <div class="experience-item card">
+                <div class="experience-title">
+                    <div>
+                        <div class="job-title">Associate Data Scientist</div>
+                        <div class="company">The Math Company</div>
+                    </div>
+                    <div class="period">09/2022 - 08/2024</div>
+                </div>
+                <div class="location">Remote</div>
+                <ul class="responsibilities">
+                    <li>Developed scalable AI solutions using Langchain frameworks, demonstrating expertise in generative AI models.</li>
+                    <li>Implemented and researched different prompting methodologies for optimizing the utilization of LLM on Text-to-SQL.</li>
+                    <li>Designed prompts and evaluation methods tailored to specific AI tasks to improve chatbot performance.</li>
+                    <li>Worked on Household Penetration and Attribution modelling to optimize promotions using Multioutput Regressor and XGBoost.</li>
+                    <li>Performed census normalization and optimization with the data.</li>
+                    <li>Conducted segmentation of user base through RFM and CLTV using KPrototype clustering.</li>
+                    <li>Provided extensive EDA and generated client-specific insights.</li>
+                </ul>
+            </div>
+            
+            <div class="experience-item card">
+                <div class="experience-title">
+                    <div>
+                        <div class="job-title">Project Engineer (Data Scientist)</div>
+                        <div class="company">Wipro</div>
+                    </div>
+                    <div class="period">08/2020 - 09/2022</div>
+                </div>
+                <div class="location">Pune, Maharashtra</div>
+                <ul class="responsibilities">
+                    <li>Provided comprehensive analysis and recommended solutions to address complex business problems using data from internal and external sources.</li>
+                    <li>Applied advanced analytical methods to assess factors impacting growth and profitability across product and service offerings.</li>
+                    <li>Created customized applications to make critical predictions and decisions, and calculate optimization algorithms.</li>
+                    <li>Designed, implemented, and evaluated new models and rapid software prototypes to solve problems in NLP.</li>
+                    <li>Conducted cluster analysis to generate segmented profiles of customers.</li>
+                    <li>Created customized reports using Matplotlib and Seaborn for data visualization.</li>
+                    <li>Implemented Attention-based model to predict clauses on specific contracts, increasing accuracy from 71% to 85%.</li>
+                </ul>
+            </div>
+            
+            <div class="experience-item card">
+                <div class="experience-title">
+                    <div>
+                        <div class="job-title">Project Engineer (Data Migration Expert)</div>
+                        <div class="company">Wipro</div>
+                    </div>
+                    <div class="period">08/2019 - 08/2020</div>
+                </div>
+                <div class="location">Bangalore, Karnataka</div>
+                <ul class="responsibilities">
+                    <li>Performed data analysis and worked on data cleansing for migration.</li>
+                    <li>Developed queries and programs for migrating data from one system to another and performed complete ETL process.</li>
+                    <li>Worked on ADM and SAP(LSMW) tools.</li>
+                    <li>Mentored new members about the work structure and tools usage.</li>
+                    <li>Completed quality reviews for designs, codes, test plans, and documentation methods.</li>
+                    <li>Troubleshot production issues and performed root-cause analysis.</li>
+                </ul>
+            </div>
+        </section>
+        
+        <section id="skills">
+            <h2 class="section-title">Technical Skills</h2>
+            
+            <div class="skill-categories">
+                <div class="skill-category card">
+                    <h3>Programming & Tools</h3>
+                    <div class="skills-list">
+                        <span class="skill-badge">Python</span>
+                        <span class="skill-badge">SQL</span>
+                        <span class="skill-badge">PySpark</span>
+                    </div>
+                </div>
+                
+                <div class="skill-category card">
+                    <h3>Libraries & Frameworks</h3>
+                    <div class="skills-list">
+                        <span class="skill-badge">Scikit-Learn</span>
+                        <span class="skill-badge">NumPy</span>
+                        <span class="skill-badge">SciPy</span>
+                        <span class="skill-badge">Pandas</span>
+                        <span class="skill-badge">NLTK</span>
+                        <span class="skill-badge">Matplotlib</span>
+                        <span class="skill-badge">TensorFlow</span>
+                        <span class="skill-badge">Keras</span>
+                        <span class="skill-badge">Langchain</span>
+                    </div>
+                </div>
+                
+                <div class="skill-category card">
+                    <h3>Machine Learning</h3>
+                    <div class="skills-list">
+                        <span class="skill-badge">Non-parametric models</span>
+                        <span class="skill-badge">KNN</span>
+                        <span class="skill-badge">Decision Tree</span>
+                        <span class="skill-badge">SVM</span>
+                        <span class="skill-badge">Parametric models</span>
+                        <span class="skill-badge">Logistic Regression</span>
+                        <span class="skill-badge">Naive Bayes</span>
+                        <span class="skill-badge">Random Forest</span>
+                        <span class="skill-badge">Boosting</span>
+                        <span class="skill-badge">Clustering</span>
+                    </div>
+                </div>
+                
+                <div class="skill-category card">
+                    <h3>Natural Language Processing</h3>
+                    <div class="skills-list">
+                        <span class="skill-badge">BOW</span>
+                        <span class="skill-badge">TF-IDF</span>
+                        <span class="skill-badge">N-grams</span>
+                        <span class="skill-badge">Word2Vec</span>
+                        <span class="skill-badge">Seq2Seq</span>
+                        <span class="skill-badge">Attention model</span>
+                    </div>
+                </div>
+                
+                <div class="skill-category card">
+                    <h3>Deep Learning</h3>
+                    <div class="skills-list">
+                        <span class="skill-badge">CNN</span>
+                        <span class="skill-badge">RNN</span>
+                        <span class="skill-badge">LSTM</span>
+                        <span class="skill-badge">GNN</span>
+                    </div>
+                </div>
+                
+                <div class="skill-category card">
+                    <h3>Generative AI</h3>
+                    <div class="skills-list">
+                        <span class="skill-badge">LLama2</span>
+                        <span class="skill-badge">OpenAI</span>
+                        <span class="skill-badge">RAG</span>
+                        <span class="skill-badge">Prompt Engineering</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="projects">
+            <h2 class="section-title">Personal Projects</h2>
+            
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3 class="project-title">Voice Assistant with RAG</h3>
+                        <a href="https://github.com/mrw0nd3rfu1/AI-Chatbot-with-Speech-Memory" target="_blank" class="github-link" title="View Code on GitHub">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+                            </svg>
+                        </a>
+                    </div>
+                    <div class="project-body">
+                        <p>AI-powered chatbot with speech recognition and memory capabilities. It integrates with a language model and allows users to ask questions via text or voice input. The chatbot processes uploaded PDF documents and uses Retrieval-Augmented Generation (RAG) to generate context-aware responses.</p>
+                        <div class="project-tech">
+                            <span class="tech-badge">LLM</span>
+                            <span class="tech-badge">RAG</span>
+                            <span class="tech-badge">Langchain</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3 class="project-title">Tornado Cost Prediction</h3>
+                        <a href="https://github.com/mrw0nd3rfu1/Tornado-Cost-Prediction" target="_blank" class="github-link" title="View Code on GitHub">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+                            </svg>
+                        </a>
+                    </div>
+                    <div class="project-body">
+                        <p>Using a hybrid model approach that combines both classification and regression techniques to predict the total cost incurred by tornadoes in the USA.</p>
+                        <div class="project-tech">
+                            <span class="tech-badge">Hybrid Modelling</span>
+                            <span class="tech-badge">Neural Networks</span>
+                            <span class="tech-badge">Random Forest</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3 class="project-title">Pet Adoption - Multi Target Prediction</h3>
+                        <a href="https://github.com/mrw0nd3rfu1/Pet-Adoption---Multi-Target-Prediction" target="_blank" class="github-link" title="View Code on GitHub">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+                            </svg>
+                        </a>
+                    </div>
+                    <div class="project-body">
+                        <p>Preprocessing the data for finding missing values. Then predicting the rate for adoption of pets with respect to the complete data.</p>
+                        <div class="project-tech">
+                            <span class="tech-badge">Python</span>
+                            <span class="tech-badge">Gradient Boosting</span>
+                            <span class="tech-badge">Keras</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="education">
+            <h2 class="section-title">Education</h2>
+            
+            <div class="education-item card">
+                <div class="degree">MSc Computer Science</div>
+                <div class="institution">Lakehead University</div>
+                <div class="location">Thunder Bay, ON</div>
+                <div class="education-year">Currently Pursing - Expected 08/2025</div>
+            </div>
+            
+            <div class="education-item card">
+                <div class="degree">Information Technology</div>
+                <div class="institution">Galgotias College of Engineering and Technology</div>
+                <div class="location">Noida</div>
+                <div class="education-year">Graduated 07/2019</div>
+            </div>
+            
+            <div class="education-item card">
+                <div class="degree">High School</div>
+                <div class="institution">St. Fidelis College</div>
+                <div class="location">Lucknow, Uttar Pradesh</div>
+                <div class="education-year">Completed 04/2014</div>
+            </div>
+        </section>
+        
+        <section id="certifications">
+            <h2 class="section-title">Certifications</h2>
+            
+            <div class="card">
+                <ul class="certifications-list">
+                    <li class="certification-item">
+                        <div class="certification-title">Microsoft Certified: Azure AI Fundamentals</div>
+                        <div class="certification-date">June 2022</div>
+                    </li>
+                    <li class="certification-item">
+                        <div class="certification-title">Deep Learning: Advanced Natural Language Processing and RNNs</div>
+                        <div class="certification-date">May 2022</div>
+                        <div class="certification-org">Certified by Udemy</div>
+                    </li>
+                    <li class="certification-item">
+                        <div class="certification-title">SQL for Data Science</div>
+                        <div class="certification-date">June 2022</div>
+                    </li>
+                    <li class="certification-item">
+                        <div class="certification-title">Machine Learning (Advanced) Nano Degree</div>
+                        <div class="certification-date">July 2018</div>
+                        <div class="certification-org">Certified by Udacity</div>
+                    </li>
+                </ul>
+            </div>
+        </section>
+    </main>
+    
+    <footer>
+        <div class="footer-content">
+            <h3>Abhinav Pandey</h3>
+            <p>Data Scientist & Machine Learning Engineer</p>
+            <div class="social-links">
+                <a href="https://github.com/mrw0nd3rfu1" target="_blank" class="social-link">GH</a>
+                <a href="mailto:abhinav.pandey3@hotmail.com" class="social-link">✉️</a>
+                <a href="tel:+16476244327" class="social-link">📱</a>
+            </div>
+            <p>&copy; 2025 Abhinav Pandey. All rights reserved.</p>
+        </div>
+    </footer>
+    
+    <script>
+        // Highlight active section in navigation
+        const sections = document.querySelectorAll('section');
+        const navLinks = document.querySelectorAll('.nav-link');
+        
+        window.addEventListener('scroll', () => {
+            let current = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 100;
+                const sectionHeight = section.clientHeight;
+                if (pageYOffset >= sectionTop && pageYOffset < sectionTop + sectionHeight) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').substring(1) === current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+        
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
+
+                
