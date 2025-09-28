@@ -5,560 +5,782 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Abhinav Pandey - Data Scientist & ML Engineer</title>
     <style>
-        :root {
-            --primary-color: #1e3a8a;
-            --secondary-color: #3b82f6;
-            --accent-color: #dbeafe;
-            --text-color: #1f2937;
-            --light-text: #4b5563;
-            --background-color: #f9fafb;
-            --card-color: #ffffff;
-            --header-gradient: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-        }
-        
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
-        
+
+        :root {
+            --primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --secondary: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --accent: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            --dark: #0a0a0a;
+            --light: #ffffff;
+            --gray-100: #f8fafc;
+            --gray-200: #e2e8f0;
+            --gray-300: #cbd5e1;
+            --gray-700: #334155;
+            --gray-800: #1e293b;
+            --gray-900: #0f172a;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
-            background-color: var(--background-color);
-            color: var(--text-color);
-            line-height: 1.6;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
         }
-        
+
+        /* Animated Background */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: linear-gradient(-45deg, #667eea, #764ba2, #f093fb, #f5576c);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Floating particles */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .particle {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+
+        /* Header */
         header {
-            background: var(--header-gradient);
-            color: white;
-            padding: 2rem 0;
-            text-align: center;
             position: relative;
-        }
-        
-        .profile-container {
-            max-width: 1200px;
-            margin: 0 auto;
+            min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 2rem;
-            flex-wrap: wrap;
+            text-align: center;
+            color: white;
+            padding: 2rem;
         }
-        
+
+        .hero-content {
+            max-width: 800px;
+            z-index: 2;
+        }
+
         .profile-image {
-            width: 180px;
-            height: 180px;
+            width: 200px;
+            height: 200px;
             border-radius: 50%;
-            background-color: var(--accent-color);
-            border: 4px solid white;
+            background: var(--light);
+            margin: 0 auto 2rem;
             background-image: url('profile.jpeg');
             background-size: cover;
             background-position: center;
-            overflow: hidden;
-            /* Keep these if you want a fallback text displayed when image fails to load */
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 4rem;
-            color: var(--primary-color);
-        }
-        
-        .profile-info {
-            text-align: left;
-        }
-        
-        .profile-info h1 {
-            font-size: 2.5rem;
-            margin-bottom: 0.5rem;
-        }
-        
-        .profile-info h2 {
-            font-size: 1.5rem;
-            font-weight: 400;
-            margin-bottom: 1rem;
-            color: rgba(255, 255, 255, 0.9);
-        }
-        
-        .contact-info {
-            display: flex;
-            gap: 1rem;
-            margin-top: 1rem;
-            flex-wrap: wrap;
-        }
-        
-        .contact-item {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            color: white;
-            text-decoration: none;
-        }
-        
-        nav {
-            background-color: white;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-        
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: center;
-        }
-        
-        .nav-link {
-            padding: 1rem 1.5rem;
-            text-decoration: none;
-            color: var(--text-color);
-            font-weight: 500;
-            transition: all 0.3s ease;
-        }
-        
-        .nav-link:hover {
-            color: var(--secondary-color);
-        }
-        
-        .nav-link.active {
-            color: var(--secondary-color);
-            border-bottom: 3px solid var(--secondary-color);
-        }
-        
-        main {
-            max-width: 1200px;
-            margin: 2rem auto;
-            padding: 0 1rem;
-        }
-        
-        section {
-            margin-bottom: 3rem;
-            scroll-margin-top: 80px;
-        }
-        
-        .section-title {
-            font-size: 1.8rem;
-            color: var(--primary-color);
-            margin-bottom: 1.5rem;
+            border: 5px solid rgba(255, 255, 255, 0.3);
+            animation: profileFloat 3s ease-in-out infinite;
             position: relative;
-            padding-bottom: 0.5rem;
+            overflow: hidden;
         }
-        
-        .section-title::after {
+
+        .profile-image::before {
             content: '';
             position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 60px;
-            height: 3px;
-            background-color: var(--secondary-color);
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            animation: shimmer 2s linear infinite;
         }
-        
-        .card {
-            background-color: var(--card-color);
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
-            padding: 1.5rem;
-            margin-bottom: 1.5rem;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+        @keyframes profileFloat {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
         }
-        
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+
+        @keyframes shimmer {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
-        
-        .experience-item {
+
+        .hero-title {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #ffffff, #f0f9ff);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: titleGlow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes titleGlow {
+            from { text-shadow: 0 0 20px rgba(255, 255, 255, 0.5); }
+            to { text-shadow: 0 0 30px rgba(255, 255, 255, 0.8); }
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.2rem, 3vw, 2rem);
             margin-bottom: 2rem;
+            opacity: 0.9;
+            animation: fadeInUp 1s ease 0.5s both;
         }
-        
-        .experience-title {
+
+        .hero-description {
+            font-size: 1.1rem;
+            margin-bottom: 3rem;
+            opacity: 0.8;
+            line-height: 1.7;
+            animation: fadeInUp 1s ease 1s both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 1s ease 1.5s both;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.5);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .btn-primary:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border-radius: 50px;
+            padding: 0.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            animation: fadeInDown 1s ease 2s both;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translate(-50%, -30px);
+            }
+            to {
+                opacity: 1;
+                transform: translate(-50%, 0);
+            }
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 0.5rem;
+        }
+
+        .nav-link {
+            padding: 0.7rem 1.5rem;
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            background: rgba(255, 255, 255, 0.2);
+            transform: scale(1.05);
+        }
+
+        /* Main Content */
+        main {
+            background: var(--gray-100);
+            position: relative;
+            z-index: 1;
+        }
+
+        .section {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 4vw, 3rem);
+            text-align: center;
+            margin-bottom: 3rem;
+            background: var(--primary);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 800;
+        }
+
+        /* Glass Cards */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .glass-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .glass-card:hover::before {
+            left: 100%;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Experience Section */
+        .experience-grid {
+            display: grid;
+            gap: 2rem;
+        }
+
+        .experience-item {
+            position: relative;
+        }
+
+        .experience-header {
             display: flex;
             justify-content: space-between;
+            align-items: start;
+            margin-bottom: 1rem;
             flex-wrap: wrap;
-            margin-bottom: 0.5rem;
+            gap: 1rem;
         }
-        
+
         .job-title {
-            font-size: 1.3rem;
-            font-weight: 600;
-            color: var(--primary-color);
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: var(--primary);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
-        
+
         .company {
-            font-size: 1.1rem;
-            font-weight: 500;
+            font-size: 1.2rem;
+            color: var(--gray-700);
+            font-weight: 600;
         }
-        
+
         .period {
-            color: var(--light-text);
-            font-weight: 500;
+            background: var(--accent);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            font-weight: 600;
+            font-size: 0.9rem;
         }
-        
+
         .location {
-            color: var(--light-text);
+            color: var(--gray-700);
             margin-bottom: 1rem;
+            font-style: italic;
         }
-        
+
         .responsibilities {
-            padding-left: 1.5rem;
+            list-style: none;
+            padding: 0;
         }
-        
-        .skill-categories {
+
+        .responsibilities li {
+            padding: 0.5rem 0;
+            padding-left: 2rem;
+            position: relative;
+            line-height: 1.6;
+        }
+
+        .responsibilities li::before {
+            content: '▶';
+            position: absolute;
+            left: 0;
+            color: #667eea;
+            font-weight: bold;
+        }
+
+        /* Skills Section */
+        .skills-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 1.5rem;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
         }
-        
+
         .skill-category h3 {
-            margin-bottom: 1rem;
-            color: var(--primary-color);
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            background: var(--secondary);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 700;
         }
-        
+
         .skills-list {
             display: flex;
             flex-wrap: wrap;
-            gap: 0.5rem;
+            gap: 0.75rem;
         }
-        
+
         .skill-badge {
-            background-color: var(--accent-color);
-            color: var(--primary-color);
-            padding: 0.5rem 1rem;
-            border-radius: 50px;
+            background: var(--primary);
+            color: white;
+            padding: 0.6rem 1.2rem;
+            border-radius: 25px;
             font-size: 0.9rem;
             font-weight: 500;
+            transition: all 0.3s ease;
+            cursor: pointer;
         }
-        
+
+        .skill-badge:hover {
+            transform: translateY(-2px) scale(1.05);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Projects Section */
         .projects-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 1.5rem;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
         }
-        
+
         .project-card {
-            background-color: var(--card-color);
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
-            overflow: hidden;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
             height: 100%;
             display: flex;
             flex-direction: column;
         }
-        
-        .project-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-        }
-        
+
         .project-header {
-            padding: 1.5rem 1.5rem 0.5rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            margin-bottom: 1rem;
         }
-        
+
         .project-title {
-            font-size: 1.3rem;
-            color: var(--primary-color);
-            margin-bottom: 0.5rem;
+            font-size: 1.4rem;
+            font-weight: 700;
+            background: var(--primary);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
-        
+
         .github-link {
-            background-color: var(--primary-color);
-            color: white;
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            background: var(--primary);
+            border-radius: 15px;
             display: flex;
             align-items: center;
             justify-content: center;
             text-decoration: none;
-            font-size: 0.9rem;
-            transition: background-color 0.3s ease;
+            color: white;
+            transition: all 0.3s ease;
         }
-        
+
         .github-link:hover {
-            background-color: var(--secondary-color);
+            transform: rotate(10deg) scale(1.1);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
         }
-        
+
         .project-body {
-            padding: 0.5rem 1.5rem 1.5rem;
             flex-grow: 1;
         }
-        
+
+        .project-description {
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+            color: var(--gray-700);
+        }
+
         .project-tech {
-            margin-top: 1rem;
             display: flex;
             flex-wrap: wrap;
             gap: 0.5rem;
         }
-        
+
         .tech-badge {
-            background-color: #e0e7ff;
-            color: #4338ca;
-            padding: 0.25rem 0.75rem;
-            border-radius: 50px;
+            background: var(--accent);
+            color: white;
+            padding: 0.4rem 0.8rem;
+            border-radius: 15px;
             font-size: 0.8rem;
-        }
-        
-        .education-item {
-            margin-bottom: 1.5rem;
-        }
-        
-        .degree {
-            font-size: 1.2rem;
-            font-weight: 600;
-            color: var(--primary-color);
-        }
-        
-        .institution {
             font-weight: 500;
         }
-        
-        .education-year {
-            color: var(--light-text);
+
+        /* Publications Section */
+        .publication-item {
+            margin-bottom: 2rem;
         }
-        
-        .certifications-list {
-            list-style-type: none;
+
+        .publication-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            background: var(--secondary);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.5rem;
         }
-        
-        .certification-item {
-            margin-bottom: 1rem;
-            position: relative;
-            padding-left: 1.5rem;
-        }
-        
-        .certification-item::before {
-            content: '🏆';
-            position: absolute;
-            left: 0;
-            color: var(--secondary-color);
-        }
-        
-        .certification-title {
+
+        .publication-status {
+            background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
             font-weight: 600;
+            display: inline-block;
+            margin-bottom: 1rem;
         }
-        
+
+        /* Education & Certifications */
+        .education-item,
+        .certification-item {
+            margin-bottom: 1.5rem;
+        }
+
+        .degree,
+        .certification-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            background: var(--primary);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .institution,
+        .certification-org {
+            font-weight: 600;
+            color: var(--gray-700);
+        }
+
+        .education-year,
         .certification-date {
-            color: var(--light-text);
+            color: var(--gray-700);
+            font-style: italic;
         }
-        
+
+        /* Contact Section */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            text-align: center;
+        }
+
+        .contact-item {
+            padding: 2rem;
+            border-radius: 20px;
+            background: var(--primary);
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .contact-item:hover {
+            transform: translateY(-10px) rotate(2deg);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .contact-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        /* Footer */
         footer {
-            background-color: var(--primary-color);
+            background: var(--gray-900);
             color: white;
             text-align: center;
-            padding: 2rem 0;
-            margin-top: 3rem;
+            padding: 3rem 2rem;
         }
-        
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
+
+        /* Scroll Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
         }
-        
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            margin: 1rem 0;
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
-        
-        .social-link {
-            color: white;
-            background-color: rgba(255, 255, 255, 0.1);
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: background-color 0.3s ease;
-            text-decoration: none;
-        }
-        
-        .social-link:hover {
-            background-color: rgba(255, 255, 255, 0.2);
-        }
-        
+
+        /* Mobile Responsiveness */
         @media (max-width: 768px) {
-            .profile-container {
-                flex-direction: column;
-                text-align: center;
+            .navbar {
+                position: static;
+                transform: none;
+                margin: 1rem;
+                left: auto;
             }
-            
-            .profile-info {
-                text-align: center;
-            }
-            
-            .contact-info {
+
+            .nav-links {
+                flex-wrap: wrap;
                 justify-content: center;
             }
-            
-            .nav-container {
-                flex-wrap: wrap;
+
+            .hero-content {
+                padding: 1rem;
             }
-            
-            .experience-title {
+
+            .section {
+                padding: 3rem 1rem;
+            }
+
+            .experience-header {
+                flex-direction: column;
+                align-items: start;
+            }
+
+            .cta-buttons {
                 flex-direction: column;
             }
-            
-            .period {
-                margin-top: 0.5rem;
-            }
-            
-            .projects-grid {
-                grid-template-columns: 1fr;
+
+            .btn {
+                width: 100%;
+                max-width: 300px;
             }
         }
     </style>
 </head>
 <body>
-    <header>
-        <div class="profile-container">
+    <div class="bg-animation"></div>
+    <div class="particles" id="particles"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <ul class="nav-links">
+            <li><a href="#home" class="nav-link active">Home</a></li>
+            <li><a href="#experience" class="nav-link">Experience</a></li>
+            <li><a href="#skills" class="nav-link">Skills</a></li>
+            <li><a href="#projects" class="nav-link">Projects</a></li>
+            <li><a href="#publications" class="nav-link">Research</a></li>
+            <li><a href="#education" class="nav-link">Education</a></li>
+            <li><a href="#contact" class="nav-link">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Header -->
+    <header id="home">
+        <div class="hero-content">
             <div class="profile-image"></div>
-            <div class="profile-info">
-                <h1>Abhinav Pandey</h1>
-                <h2>Data Scientist & Machine Learning Engineer</h2>
-                <p>5 years of experience in Machine Learning, Natural Language Processing, EDA, and Statistical Analysis. Passionate engineer specializing in AI-driven solutions for real-world problems.</p>
-                <div class="contact-info">
-                    <a href="tel:+16476244327" class="contact-item">
-                        <span>📱</span> +1 (647) 624-4327
-                    </a>
-                    <a href="mailto:abhinav.pandey3@hotmail.com" class="contact-item">
-                        <span>✉️</span> abhinav.pandey3@hotmail.com
-                    </a>
-                    <a href="https://github.com/mrw0nd3rfu1" target="_blank" class="contact-item">
-                        <span>💻</span> GitHub
-                    </a>
-                    <span class="contact-item">
-                        <span>📍</span> Ottawa, ON
-                    </span>
-                </div>
+            <h1 class="hero-title">Abhinav Pandey</h1>
+            <h2 class="hero-subtitle">Data Scientist & Machine Learning Engineer</h2>
+            <p class="hero-description">
+                Data Scientist with 5 years of experience in machine learning, deep learning, NLP including LLMs, generative AI, and RAG. 
+                Passionate about building scalable, interpretable, and impactful AI systems that solve real-world problems.
+            </p>
+            <div class="cta-buttons">
+                <a href="#experience" class="btn btn-primary">Explore My Work</a>
+                <a href="#contact" class="btn btn-secondary">Get In Touch</a>
             </div>
         </div>
     </header>
-    
-    <nav>
-        <div class="nav-container">
-            <a href="#about" class="nav-link active">About</a>
-            <a href="#experience" class="nav-link">Experience</a>
-            <a href="#skills" class="nav-link">Skills</a>
-            <a href="#projects" class="nav-link">Projects</a>
-            <a href="#education" class="nav-link">Education</a>
-            <a href="#certifications" class="nav-link">Certifications</a>
-        </div>
-    </nav>
-    
+
     <main>
-        <section id="about" class="card">
-            <h2 class="section-title">About Me</h2>
-            <p>I am a data scientist and machine learning engineer with 5 years of experience in developing AI-driven solutions for complex business problems. My expertise includes machine learning, natural language processing, exploratory data analysis, feature engineering, and statistical analysis.</p>
-            <p>With a proven track record of implementing cutting-edge technologies such as LLMs, RAG, and deep learning models, I excel at translating business requirements into scalable AI solutions. I am particularly passionate about NLP, predictive modeling, and leveraging AI to solve real-world challenges.</p>
-            <p>Currently, I'm pursuing my MSc in Computer Science at Lakehead University while working as a Research Assistant, focusing on the application of deep learning for educational analytics.</p>
-        </section>
-        
-        <section id="experience">
-            <h2 class="section-title">Work Experience</h2>
-            
-            <div class="experience-item card">
-                <div class="experience-title">
-                    <div>
-                        <div class="job-title">Research Assistant</div>
-                        <div class="company">Lakehead University</div>
+        <!-- Experience Section -->
+        <section id="experience" class="section">
+            <h2 class="section-title">Experience</h2>
+            <div class="experience-grid">
+                <div class="glass-card experience-item fade-in">
+                    <div class="experience-header">
+                        <div>
+                            <div class="job-title">Research Assistant</div>
+                            <div class="company">Lakehead University</div>
+                        </div>
+                        <div class="period">01/2025 - 07/2025</div>
                     </div>
-                    <div class="period">01/2025 - Present</div>
+                    <div class="location">Thunder Bay, ON</div>
+                    <ul class="responsibilities">
+                        <li>Conducted research on deep learning approaches, including clustering and GNNs, to analyze student performance data and designed a systematic pipeline for educational data collection and preprocessing</li>
+                        <li>Implemented Explainable AI (XAI) methods (Grad-CAM) for SegFormer-based segmentation models</li>
+                        <li>Developing and evaluating RAG (Retrieval-Augmented Generation) pipelines for academic recommendations</li>
+                        <li>Worked on self-supervised HSI (Hyperspectral Imaging) models for improved feature extraction and segmentation</li>
+                        <li>Presented research findings to faculty, mentored junior researchers, and contributed to literature reviews on AI-driven educational analytics</li>
+                    </ul>
                 </div>
-                <div class="location">Thunder Bay, ON</div>
-                <ul class="responsibilities">
-                    <li>Conducting research on deep learning approaches (Clustering, GNNs) to analyze and predict factors influencing student academic performance.</li>
-                    <li>Designed a systematic pipeline for educational data collection and preprocessing for ML model training.</li>
-                    <li>Implemented Explainable AI (XAI) methods (Grad-CAM) for SegFormer-based segmentation models.</li>
-                    <li>Developing and evaluating multiple RAG (Retrieval-Augmented Generation) pipelines and embedding strategies to improve recommendation systems in educational contexts.</li>
-                    <li>Reviewed literature on AI-driven educational analytics and presented findings to faculty and research teams.</li>
- 		            <li>Mentoring junior researchers on deep learning workflows, model evaluation, and research best practices.</li>
-                </ul>
-            </div>
-            
-            <div class="experience-item card">
-                <div class="experience-title">
-                    <div>
-                        <div class="job-title">Associate Data Scientist</div>
-                        <div class="company">The Math Company</div>
+
+                <div class="glass-card experience-item fade-in">
+                    <div class="experience-header">
+                        <div>
+                            <div class="job-title">Associate Data Scientist</div>
+                            <div class="company">The Math Company</div>
+                        </div>
+                        <div class="period">09/2022 - 08/2024</div>
                     </div>
-                    <div class="period">09/2022 - 08/2024</div>
+                    <div class="location">Remote</div>
+                    <ul class="responsibilities">
+                        <li>Designed and deployed scalable AI solutions for retail and CPG clients, integrating LangChain pipelines and generative AI models</li>
+                        <li>Collaborated directly with clients to gather requirements, present analytical findings, and deliver tailored AI solutions</li>
+                        <li>Researched and implemented prompt engineering strategies to optimize LLM performance in Text-to-SQL translation and NLP-driven chatbot development</li>
+                        <li>Built predictive models for household penetration, attribution, and demographic segmentation using XGBoost and multioutput regression</li>
+                        <li>Conducted customer segmentation using RFM, CLTV, and K-Prototypes, delivering deep EDA for data-informed decisions</li>
+                    </ul>
                 </div>
-                <div class="location">Remote</div>
-                <ul class="responsibilities">
-                    <li>Developed scalable AI solutions using Langchain frameworks, demonstrating expertise in generative AI models.</li>
-                    <li>Implemented and researched different prompting methodologies for optimizing the utilization of LLM on Text-to-SQL.</li>
-                    <li>Designed prompts and evaluation methods tailored to specific AI tasks to improve chatbot performance.</li>
-                    <li>Worked on Household Penetration and Attribution modelling to optimize promotions using Multioutput Regressor and XGBoost.</li>
-                    <li>Performed census normalization and optimization with the data.</li>
-                    <li>Conducted segmentation of user base through RFM and CLTV using KPrototype clustering.</li>
-                    <li>Provided extensive EDA and generated client-specific insights.</li>
-                </ul>
-            </div>
-            
-            <div class="experience-item card">
-                <div class="experience-title">
-                    <div>
-                        <div class="job-title">Project Engineer (Data Scientist)</div>
-                        <div class="company">Wipro</div>
+
+                <div class="glass-card experience-item fade-in">
+                    <div class="experience-header">
+                        <div>
+                            <div class="job-title">Project Engineer (Data Scientist)</div>
+                            <div class="company">Wipro</div>
+                        </div>
+                        <div class="period">08/2020 - 09/2022</div>
                     </div>
-                    <div class="period">08/2020 - 09/2022</div>
+                    <div class="location">Pune, Maharashtra</div>
+                    <ul class="responsibilities">
+                        <li>Built custom analytical applications for prediction, optimization, and performance evaluation across key business functions</li>
+                        <li>Designed and implemented NLP pipelines for the legal domain, focusing on contract clause extraction and interpretation</li>
+                        <li>Developed an attention-based model for clause classification, boosting accuracy from 71% to 85%</li>
+                        <li>Delivered automated document processing solutions, combining legal text parsing, named entity recognition, and clause summarization</li>
+                    </ul>
                 </div>
-                <div class="location">Pune, Maharashtra</div>
-                <ul class="responsibilities">
-                    <li>Provided comprehensive analysis and recommended solutions to address complex business problems using data from internal and external sources.</li>
-                    <li>Applied advanced analytical methods to assess factors impacting growth and profitability across product and service offerings.</li>
-                    <li>Created customized applications to make critical predictions and decisions, and calculate optimization algorithms.</li>
-                    <li>Designed, implemented, and evaluated new models and rapid software prototypes to solve problems in NLP.</li>
-                    <li>Conducted cluster analysis to generate segmented profiles of customers.</li>
-                    <li>Created customized reports using Matplotlib and Seaborn for data visualization.</li>
-                    <li>Implemented Attention-based model to predict clauses on specific contracts, increasing accuracy from 71% to 85%.</li>
-                </ul>
-            </div>
-            
-            <div class="experience-item card">
-                <div class="experience-title">
-                    <div>
-                        <div class="job-title">Project Engineer (Data Migration Expert)</div>
-                        <div class="company">Wipro</div>
+
+                <div class="glass-card experience-item fade-in">
+                    <div class="experience-header">
+                        <div>
+                            <div class="job-title">Project Engineer (Data Migration Expert)</div>
+                            <div class="company">Wipro</div>
+                        </div>
+                        <div class="period">08/2019 - 08/2020</div>
                     </div>
-                    <div class="period">08/2019 - 08/2020</div>
+                    <div class="location">Bangalore, Karnataka</div>
+                    <ul class="responsibilities">
+                        <li>Performed data analysis and cleansing for large-scale enterprise data migration projects</li>
+                        <li>Developed ETL pipelines and wrote migration scripts using SQL and SAP LSMW tools</li>
+                        <li>Assisted in quality checks, documentation, and production issue resolution</li>
+                        <li>Mentored junior team members on migration tools and processes</li>
+                    </ul>
                 </div>
-                <div class="location">Bangalore, Karnataka</div>
-                <ul class="responsibilities">
-                    <li>Performed data analysis and worked on data cleansing for migration.</li>
-                    <li>Developed queries and programs for migrating data from one system to another and performed complete ETL process.</li>
-                    <li>Worked on ADM and SAP(LSMW) tools.</li>
-                    <li>Mentored new members about the work structure and tools usage.</li>
-                    <li>Completed quality reviews for designs, codes, test plans, and documentation methods.</li>
-                    <li>Troubleshot production issues and performed root-cause analysis.</li>
-                </ul>
             </div>
         </section>
-        
-        <section id="skills">
+
+        <!-- Skills Section -->
+        <section id="skills" class="section">
             <h2 class="section-title">Technical Skills</h2>
-            
-            <div class="skill-categories">
-                <div class="skill-category card">
+            <div class="skills-grid">
+                <div class="glass-card skill-category fade-in">
                     <h3>Programming & Tools</h3>
                     <div class="skills-list">
                         <span class="skill-badge">Python</span>
                         <span class="skill-badge">SQL</span>
                         <span class="skill-badge">PySpark</span>
+                        <span class="skill-badge">Tableau</span>
+                        <span class="skill-badge">Power BI</span>
                     </div>
                 </div>
-                
-                <div class="skill-category card">
+
+                <div class="glass-card skill-category fade-in">
+                    <h3>Cloud Platforms</h3>
+                    <div class="skills-list">
+                        <span class="skill-badge">AWS</span>
+                        <span class="skill-badge">Azure</span>
+                        <span class="skill-badge">Google Cloud Platform</span>
+                    </div>
+                </div>
+
+                <div class="glass-card skill-category fade-in">
                     <h3>Libraries & Frameworks</h3>
                     <div class="skills-list">
                         <span class="skill-badge">Scikit-Learn</span>
@@ -569,18 +791,16 @@
                         <span class="skill-badge">Matplotlib</span>
                         <span class="skill-badge">TensorFlow</span>
                         <span class="skill-badge">Keras</span>
-                        <span class="skill-badge">Langchain</span>
+                        <span class="skill-badge">PyTorch</span>
                     </div>
                 </div>
-                
-                <div class="skill-category card">
+
+                <div class="glass-card skill-category fade-in">
                     <h3>Machine Learning</h3>
                     <div class="skills-list">
-                        <span class="skill-badge">Non-parametric models</span>
                         <span class="skill-badge">KNN</span>
                         <span class="skill-badge">Decision Tree</span>
                         <span class="skill-badge">SVM</span>
-                        <span class="skill-badge">Parametric models</span>
                         <span class="skill-badge">Logistic Regression</span>
                         <span class="skill-badge">Naive Bayes</span>
                         <span class="skill-badge">Random Forest</span>
@@ -588,182 +808,260 @@
                         <span class="skill-badge">Clustering</span>
                     </div>
                 </div>
-                
-                <div class="skill-category card">
-                    <h3>Natural Language Processing</h3>
-                    <div class="skills-list">
-                        <span class="skill-badge">BOW</span>
-                        <span class="skill-badge">TF-IDF</span>
-                        <span class="skill-badge">N-grams</span>
-                        <span class="skill-badge">Word2Vec</span>
-                        <span class="skill-badge">Seq2Seq</span>
-                        <span class="skill-badge">Attention model</span>
-                    </div>
-                </div>
-                
-                <div class="skill-category card">
-                    <h3>Deep Learning</h3>
+
+                <div class="glass-card skill-category fade-in">
+                    <h3>Deep Learning & NLP</h3>
                     <div class="skills-list">
                         <span class="skill-badge">CNN</span>
                         <span class="skill-badge">RNN</span>
                         <span class="skill-badge">LSTM</span>
                         <span class="skill-badge">GNN</span>
+                        <span class="skill-badge">Transformers</span>
+                        <span class="skill-badge">Attention Models</span>
+                        <span class="skill-badge">Word2Vec</span>
+                        <span class="skill-badge">BERT</span>
+                        <span class="skill-badge">HSI</span>
+                        <span class="skill-badge">Autoencoders</span>
                     </div>
                 </div>
-                
-                <div class="skill-category card">
+
+                <div class="glass-card skill-category fade-in">
                     <h3>Generative AI</h3>
                     <div class="skills-list">
-                        <span class="skill-badge">LLama2</span>
+                        <span class="skill-badge">LLama</span>
                         <span class="skill-badge">OpenAI</span>
                         <span class="skill-badge">RAG</span>
                         <span class="skill-badge">Prompt Engineering</span>
+                        <span class="skill-badge">LangChain</span>
+                        <span class="skill-badge">XAI</span>
                     </div>
                 </div>
             </div>
         </section>
-        
-        <section id="projects">
+
+        <!-- Projects Section -->
+        <section id="projects" class="section">
             <h2 class="section-title">Personal Projects</h2>
-            
             <div class="projects-grid">
-                <div class="project-card">
+                <div class="glass-card project-card fade-in">
                     <div class="project-header">
-                        <h3 class="project-title">Voice Assistant with RAG</h3>
-                        <a href="https://github.com/mrw0nd3rfu1/AI-Chatbot-with-Speech-Memory" target="_blank" class="github-link" title="View Code on GitHub">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+                        <h3 class="project-title">Intrusion Detection System with Wireshark</h3>
+                        <a href="https://github.com/mrw0nd3rfu1" target="_blank" class="github-link">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
                             </svg>
                         </a>
                     </div>
                     <div class="project-body">
-                        <p>AI-powered chatbot with speech recognition and memory capabilities. It integrates with a language model and allows users to ask questions via text or voice input. The chatbot processes uploaded PDF documents and uses Retrieval-Augmented Generation (RAG) to generate context-aware responses.</p>
+                        <p class="project-description">A comprehensive machine learning-based Intrusion Detection System that supports real-time network traffic analysis, PCAP file processing, and live packet capture integration with Wireshark.</p>
+                        <div class="project-tech">
+                            <span class="tech-badge">CNN</span>
+                            <span class="tech-badge">LSTM</span>
+                            <span class="tech-badge">Wireshark</span>
+                            <span class="tech-badge">Transformers</span>
+                            <span class="tech-badge">LIME</span>
+                            <span class="tech-badge">SHAP</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass-card project-card fade-in">
+                    <div class="project-header">
+                        <h3 class="project-title">Voice Assistant with RAG</h3>
+                        <a href="https://github.com/mrw0nd3rfu1/AI-Chatbot-with-Speech-Memory" target="_blank" class="github-link">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                            </svg>
+                        </a>
+                    </div>
+                    <div class="project-body">
+                        <p class="project-description">AI-powered chatbot with speech recognition and memory capabilities. It integrates with a language model and allows users to ask questions via text or voice input. The chatbot processes uploaded PDF documents and uses Retrieval-Augmented Generation (RAG) to generate context-aware responses.</p>
                         <div class="project-tech">
                             <span class="tech-badge">LLM</span>
                             <span class="tech-badge">RAG</span>
-                            <span class="tech-badge">Langchain</span>
+                            <span class="tech-badge">LangChain</span>
+                            <span class="tech-badge">Speech-to-Text</span>
+                            <span class="tech-badge">NLP</span>
                         </div>
                     </div>
                 </div>
-                
-                <div class="project-card">
+
+                <div class="glass-card project-card fade-in">
                     <div class="project-header">
-                        <h3 class="project-title">Tornado Cost Prediction</h3>
-                        <a href="https://github.com/mrw0nd3rfu1/Tornado-Cost-Prediction" target="_blank" class="github-link" title="View Code on GitHub">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+                        <h3 class="project-title">Speech Emotion Recognition with HuBERT</h3>
+                        <a href="https://github.com/mrw0nd3rfu1" target="_blank" class="github-link">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
                             </svg>
                         </a>
                     </div>
                     <div class="project-body">
-                        <p>Using a hybrid model approach that combines both classification and regression techniques to predict the total cost incurred by tornadoes in the USA.</p>
+                        <p class="project-description">Developed a deep learning system for detecting human emotions from speech using a fine-tuned HuBERT model. Aggregated and preprocessed four large emotional audio datasets (SAVEE, TESS, CREMA-D, RAVDESS) achieving 99.37% accuracy on unseen data.</p>
                         <div class="project-tech">
-                            <span class="tech-badge">Hybrid Modelling</span>
-                            <span class="tech-badge">Neural Networks</span>
-                            <span class="tech-badge">Random Forest</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="project-card">
-                    <div class="project-header">
-                        <h3 class="project-title">Pet Adoption - Multi Target Prediction</h3>
-                        <a href="https://github.com/mrw0nd3rfu1/Pet-Adoption---Multi-Target-Prediction" target="_blank" class="github-link" title="View Code on GitHub">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
-                            </svg>
-                        </a>
-                    </div>
-                    <div class="project-body">
-                        <p>Preprocessing the data for finding missing values. Then predicting the rate for adoption of pets with respect to the complete data.</p>
-                        <div class="project-tech">
-                            <span class="tech-badge">Python</span>
-                            <span class="tech-badge">Gradient Boosting</span>
-                            <span class="tech-badge">Keras</span>
+                            <span class="tech-badge">HuBERT</span>
+                            <span class="tech-badge">Transfer Learning</span>
+                            <span class="tech-badge">PyTorch</span>
+                            <span class="tech-badge">Hugging Face</span>
+                            <span class="tech-badge">Wav2Vec2</span>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="education">
+        <!-- Publications Section -->
+        <section id="publications" class="section">
+            <h2 class="section-title">Research Publications</h2>
+            
+            <div class="glass-card publication-item fade-in">
+                <div class="publication-title">Explainable AI Using Graph Neural Networks for Academic Performance Recommendations</div>
+                <div class="publication-status">Submitted for Publication</div>
+                <p class="project-description">Developed a GNN-based academic recommendation system on semi-structured textual data. Utilized text embeddings and integrated them with a GAT model to capture semantic relationships. A T5-based summarization model was implemented to generate concise student profiles. Employed XAI techniques (GNNExplainer, SHAP) to provide interpretable outputs and enhance trust in the recommendations.</p>
+            </div>
+
+            <div class="glass-card publication-item fade-in">
+                <div class="publication-title">Explainable AI for Scalable and Cross-Domain Scene Segmentation</div>
+                <div class="publication-status">Submitted for Publication</div>
+                <p class="project-description">Studied interpretability in SegFormer-based transformer models for scene segmentation across CamVid, KITTI, and IDD datasets. Integrated Grad-CAM and class-wise confidence heatmaps to provide transparent, class-specific visual explanations, supporting cross-domain generalization and decision reliability in safety-critical applications.</p>
+            </div>
+        </section>
+
+        <!-- Education Section -->
+        <section id="education" class="section">
             <h2 class="section-title">Education</h2>
             
-            <div class="education-item card">
+            <div class="glass-card education-item fade-in">
                 <div class="degree">MSc Computer Science</div>
                 <div class="institution">Lakehead University</div>
                 <div class="location">Thunder Bay, ON</div>
-                <div class="education-year">Currently Pursing - Expected 08/2025</div>
+                <div class="education-year">Expected 08/2025</div>
             </div>
             
-            <div class="education-item card">
+            <div class="glass-card education-item fade-in">
                 <div class="degree">Information Technology</div>
                 <div class="institution">Galgotias College of Engineering and Technology</div>
                 <div class="location">Noida</div>
                 <div class="education-year">Graduated 07/2019</div>
             </div>
-            
-            <div class="education-item card">
-                <div class="degree">High School</div>
-                <div class="institution">St. Fidelis College</div>
-                <div class="location">Lucknow, Uttar Pradesh</div>
-                <div class="education-year">Completed 04/2014</div>
-            </div>
         </section>
-        
-        <section id="certifications">
+
+        <!-- Certifications Section -->
+        <section id="certifications" class="section">
             <h2 class="section-title">Certifications</h2>
             
-            <div class="card">
-                <ul class="certifications-list">
-                    <li class="certification-item">
-                        <div class="certification-title">Microsoft Certified: Azure AI Fundamentals</div>
-                        <div class="certification-date">June 2022</div>
-                    </li>
-                    <li class="certification-item">
-                        <div class="certification-title">Deep Learning: Advanced Natural Language Processing and RNNs</div>
-                        <div class="certification-date">May 2022</div>
-                        <div class="certification-org">Certified by Udemy</div>
-                    </li>
-                    <li class="certification-item">
-                        <div class="certification-title">SQL for Data Science</div>
-                        <div class="certification-date">June 2022</div>
-                    </li>
-                    <li class="certification-item">
-                        <div class="certification-title">Machine Learning (Advanced) Nano Degree</div>
-                        <div class="certification-date">July 2018</div>
-                        <div class="certification-org">Certified by Udacity</div>
-                    </li>
-                </ul>
+            <div class="glass-card fade-in">
+                <div class="certification-item">
+                    <div class="certification-title">Microsoft Certified: Azure AI Fundamentals</div>
+                    <div class="certification-date">June 2022</div>
+                </div>
+                
+                <div class="certification-item">
+                    <div class="certification-title">Deep Learning: Advanced Natural Language Processing and RNNs</div>
+                    <div class="certification-org">Certified by Udemy</div>
+                    <div class="certification-date">May 2022</div>
+                </div>
+                
+                <div class="certification-item">
+                    <div class="certification-title">Machine Learning (Advanced) Nano Degree</div>
+                    <div class="certification-org">Certified by Udacity</div>
+                    <div class="certification-date">July 2018</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="section">
+            <h2 class="section-title">Let's Connect</h2>
+            <div class="contact-grid">
+                <a href="tel:+16476244327" class="contact-item fade-in">
+                    <span class="contact-icon">📱</span>
+                    <div>
+                        <h3>Phone</h3>
+                        <p>+1 (647) 624-4327</p>
+                    </div>
+                </a>
+                
+                <a href="mailto:abhinav.pandey3@hotmail.com" class="contact-item fade-in">
+                    <span class="contact-icon">✉️</span>
+                    <div>
+                        <h3>Email</h3>
+                        <p>abhinav.pandey3@hotmail.com</p>
+                    </div>
+                </a>
+                
+                <a href="https://github.com/mrw0nd3rfu1" target="_blank" class="contact-item fade-in">
+                    <span class="contact-icon">💻</span>
+                    <div>
+                        <h3>GitHub</h3>
+                        <p>mrw0nd3rfu1</p>
+                    </div>
+                </a>
+                
+                <div class="contact-item fade-in">
+                    <span class="contact-icon">📍</span>
+                    <div>
+                        <h3>Location</h3>
+                        <p>Ottawa, ON</p>
+                    </div>
+                </div>
             </div>
         </section>
     </main>
-    
+
     <footer>
         <div class="footer-content">
             <h3>Abhinav Pandey</h3>
             <p>Data Scientist & Machine Learning Engineer</p>
-            <div class="social-links">
-                <a href="https://github.com/mrw0nd3rfu1" target="_blank" class="social-link">GH</a>
-                <a href="mailto:abhinav.pandey3@hotmail.com" class="social-link">✉️</a>
-                <a href="tel:+16476244327" class="social-link">📱</a>
-            </div>
             <p>&copy; 2025 Abhinav Pandey. All rights reserved.</p>
         </div>
     </footer>
-    
+
     <script>
-        // Highlight active section in navigation
-        const sections = document.querySelectorAll('section');
-        const navLinks = document.querySelectorAll('.nav-link');
-        
-        window.addEventListener('scroll', () => {
+        // Create floating particles
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 50;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = Math.random() * 100 + '%';
+                particle.style.width = Math.random() * 4 + 2 + 'px';
+                particle.style.height = particle.style.width;
+                particle.style.animationDelay = Math.random() * 6 + 's';
+                particle.style.animationDuration = (Math.random() * 3 + 3) + 's';
+                particlesContainer.appendChild(particle);
+            }
+        }
+
+        // Scroll animations
+        function handleScrollAnimations() {
+            const elements = document.querySelectorAll('.fade-in');
+            const windowHeight = window.innerHeight;
+            
+            elements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+                
+                if (elementTop < windowHeight - elementVisible) {
+                    element.classList.add('visible');
+                }
+            });
+        }
+
+        // Navigation highlighting
+        function handleNavigation() {
+            const sections = document.querySelectorAll('section, header');
+            const navLinks = document.querySelectorAll('.nav-link');
+            
             let current = '';
             
             sections.forEach(section => {
-                const sectionTop = section.offsetTop - 100;
+                const sectionTop = section.offsetTop - 200;
                 const sectionHeight = section.clientHeight;
-                if (pageYOffset >= sectionTop && pageYOffset < sectionTop + sectionHeight) {
+                
+                if (window.pageYOffset >= sectionTop && window.pageYOffset < sectionTop + sectionHeight) {
                     current = section.getAttribute('id');
                 }
             });
@@ -774,19 +1072,64 @@
                     link.classList.add('active');
                 }
             });
-        });
-        
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
+        }
+
+        // Smooth scrolling
+        function setupSmoothScrolling() {
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
                 });
+            });
+        }
+
+        // Skill badge hover effects
+        function setupSkillBadges() {
+            const skillBadges = document.querySelectorAll('.skill-badge');
+            
+            skillBadges.forEach(badge => {
+                badge.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-2px) scale(1.05)';
+                });
+                
+                badge.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0) scale(1)';
+                });
+            });
+        }
+
+        // Initialize everything
+        document.addEventListener('DOMContentLoaded', function() {
+            createParticles();
+            setupSmoothScrolling();
+            setupSkillBadges();
+            handleScrollAnimations();
+            handleNavigation();
+        });
+
+        // Handle scroll events
+        window.addEventListener('scroll', function() {
+            handleScrollAnimations();
+            handleNavigation();
+        });
+
+        // Add some interactivity to project cards
+        document.querySelectorAll('.project-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-15px) rotate(1deg)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) rotate(0deg)';
             });
         });
     </script>
 </body>
 </html>
-
-                
