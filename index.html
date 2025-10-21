@@ -227,12 +227,13 @@
             left: 50%;
             transform: translateX(-50%);
             z-index: 1000;
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(30, 64, 175, 0.85); /* More opaque background */
             backdrop-filter: blur(20px);
             border-radius: 50px;
             padding: 0.5rem;
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.4);
             animation: fadeInDown 1s ease 2s both;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3); /* Added shadow for visibility */
         }
 
         @keyframes fadeInDown {
@@ -610,37 +611,63 @@
         /* Mobile Responsiveness */
         @media (max-width: 768px) {
             .navbar {
-                position: static;
-                transform: none;
-                margin: 1rem;
-                left: auto;
+                position: fixed; /* Keep it fixed instead of static */
+                top: 1rem;
+                transform: translateX(-50%);
+                margin: 0;
+                width: calc(100% - 2rem);
+                max-width: 600px;
             }
-
+        
             .nav-links {
                 flex-wrap: wrap;
                 justify-content: center;
+                gap: 0.25rem;
             }
-
+            
+            .nav-link {
+                padding: 0.5rem 0.8rem;
+                font-size: 0.85rem;
+            }
+        
             .hero-content {
                 padding: 1rem;
+                margin-top: 80px; /* Add space for fixed navbar */
             }
-
+        
             .section {
                 padding: 3rem 1rem;
             }
-
+        
             .experience-header {
                 flex-direction: column;
                 align-items: start;
             }
-
+        
             .cta-buttons {
                 flex-direction: column;
             }
-
+        
             .btn {
                 width: 100%;
                 max-width: 300px;
+            }
+            
+            .profile-image {
+                width: 150px;
+                height: 150px;
+            }
+            
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .contact-grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -934,7 +961,7 @@
                 <div class="degree">MSc Computer Science</div>
                 <div class="institution">Lakehead University</div>
                 <div class="location">Thunder Bay, ON</div>
-                <div class="education-year">Expected 08/2025</div>
+                <div class="education-year">Graduated 09/2025</div>
             </div>
             
             <div class="glass-card education-item fade-in">
